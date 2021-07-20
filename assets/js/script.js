@@ -10,6 +10,7 @@ const score = document.getElementById("score");
 var previousAnswer = "";
 const pAnswer = document.getElementById("pAnswer");
 const container = document.getElementById("container");
+var yourScore = document.getElementById("yourScore")
 
 //Array of questions and answers that can be referenced by the makeQuestion function to generate the quiz
 let questions = [
@@ -99,6 +100,9 @@ function checkAnswer(answer){
   if(currentQuestion < lastQuestion){
       currentQuestion++;
       makeQuestion();
+  }else{
+    yourScore.style.display = "block";
+    quiz.style.display = "none";
   }
 }
 function answerIsCorrect(){
