@@ -1,4 +1,4 @@
-// A list of the variables (constants) to be referenced throughout the quiz code
+// A list of the variables (mostly constants) to be referenced throughout the quiz code
 const start = document.getElementById("start");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
@@ -11,7 +11,7 @@ var previousAnswer = "";
 const pAnswer = document.getElementById("pAnswer");
 const container = document.getElementById("container");
 
-//
+//Array of questions and answers that can be referenced by the makeQuestion function to generate the quiz
 let questions = [
     {
     question: "Commonly used data types DO NOT include:",
@@ -25,37 +25,37 @@ let questions = [
     {
     question: "The condition in an if/else statement is enclosed within _____.",
     answer: "3",
-    choice1 :  "quotes",
-    choice2 :  "curly brackets",
-    choice3 :  "parentheses",
-    choice4 :  "square brackets"
+    choice1 :  "1. quotes",
+    choice2 :  "2. curly brackets",
+    choice3 :  "3. parentheses",
+    choice4 :  "4. square brackets"
     
   },
     {
     question: "Arrays in JavaScript can be used to store _____.",
     answer: "4",
-    choice1 : "numbers and strings",
-    choice2 : "other arrays",
-    choice3 : "booleans",
-    choice4 : "all of the above"
+    choice1 : "1. numbers and strings",
+    choice2 : "2. other arrays",
+    choice3 : "3. booleans",
+    choice4 : "4. all of the above"
     
   },
     {
     question: "String values must be enclosed within _____ when being assigned to variables.",
     answer: "3",
-    choice1 : "commas",
-    choice2 : "curly brackets",
-    choice3 : "quotes",
-    choice4 : "parentheses"
+    choice1 : "1. commas",
+    choice2 : "2. curly brackets",
+    choice3 : "3. quotes",
+    choice4 : "4. parentheses"
     
   },
   {
     question: "A very useful tool used during development and debugging for printing content to the debugger is:",
     answer: "4",
-    choice1 : "JavaScript",
-    choice2 : "terminal/bash",
-    choice3 : "for loops",
-    choice4 : "console.log"
+    choice1 : "1. JavaScript",
+    choice2 : "2. terminal/bash",
+    choice3 : "3. for loops",
+    choice4 : "4. console.log"
     
   },
 ]
@@ -103,26 +103,18 @@ function checkAnswer(answer){
 }
 function answerIsCorrect(){
   //Might need to add HTML elements into this quotation (<p>correct</p>)
-  previousAnswer =  "<div class=\"pAnswer\">Correct</div>";
+  previousAnswer =  "<div class=\"pAnswer\">Correct!</div>";
 
   console.log("correct");
 }
 
 function answerIsWrong(){
   console.log("wrong");
-  previousAnswer = "Incorrect";
+  previousAnswer = "<div class=\"pAnswer\">Incorrect!</div>";
 }
 
 
 
-/*
-function renderProgress(){
-  for(let qIndex = 0; qIndex <= lastQuestion;
-     qIndex++){
-       progress.innerHTML += "<div class='prog' id="+qIndex +"></div>";
-     }
-}
-*/
 
 
 

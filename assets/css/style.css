@@ -8,7 +8,7 @@ h1 {
 }
 
 p {
-    font-size: 18px;
+    font-size: 22px;
 }
 
 ul {
@@ -19,17 +19,23 @@ ul {
 li {
     display: inline;
     text-align: right;
+    font-size: 20px;
 }
 
 .start_btn {
     background-color: blueviolet;
     color: white;
     text-align: center;
+    width: 150px;
+    height: 50px;
 
 }
 
 .pAnswer {
-    border-top:black 5px solid;
+    border-top:black 2px solid;
+    padding-top: 10px;
+    margin-top: 15px;
+    font-size: 20px;
 }
 
 .choice {
@@ -55,10 +61,14 @@ li {
 #quiz {
     width: fit-content;
     margin: auto;
+    padding-top: 120px;
 }
 
-/*
+
 #question {
     font-weight: bolder;
 }
-*/
+
+nav {
+    padding-top: 20px;
+}
