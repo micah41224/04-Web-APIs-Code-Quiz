@@ -16,10 +16,10 @@ let questions = [
     {
     question: "Commonly used data types DO NOT include:",
     answer: "3",
-    choice1 : "strings",
-    choice2 : "booleans",
-    choice3 : "alerts",
-    choice4 : "numbers"
+    choice1 : "1. strings",
+    choice2 : "2. booleans",
+    choice3 : "3. alerts",
+    choice4 : "4. numbers"
     
   },
     {

@@ -11,6 +11,16 @@ p {
     font-size: 18px;
 }
 
+ul {
+    list-style-type: none;
+    display: inline;
+}
+
+li {
+    display: inline;
+    text-align: right;
+}
+
 .start_btn {
     background-color: blueviolet;
     color: white;
@@ -46,3 +56,9 @@ p {
     width: fit-content;
     margin: auto;
 }
+
+/*
+#question {
+    font-weight: bolder;
+}
+*/
