@@ -67,6 +67,7 @@ let currentQuestion = 0;
 
 
 function makeQuestion(){
+
     let q = questions[currentQuestion];
 
     question.innerHTML = "<p>"+ q.question +"</p";
@@ -85,6 +86,7 @@ function startQuiz(){
   container.style.display = "none";
   makeQuestion();
   quiz.style.display = "block";
+  timer();
 }
 
 function checkAnswer(answer){
@@ -117,7 +119,24 @@ function answerIsWrong(){
   previousAnswer = "<div class=\"pAnswer\">Incorrect!</div>";
 }
 
+function showHighScores(){
+  yourScore.style.display = "block";
+  quiz.style.display = "none";
+}
 
+function timer(){
+  var sec = 70;
+  var timer = setInterval(function(){
+      document.getElementById('timerDisplay').innerHTML='00:'+sec;
+      sec--;
+      if (sec < 0) {
+          clearInterval(timer);
+      }
+      /*if (previousAnswer == "<div class=\"pAnswer\">Incorrect!</div>") {
+      document.getElementById('timerDisplay').innerHTML='00:'+ (sec - 10000);
+      } */
+  }, 1000);
+}
 
 
 

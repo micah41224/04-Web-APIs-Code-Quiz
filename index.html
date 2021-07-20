@@ -10,12 +10,9 @@
 <body>
   <nav>
     <ul>
-        <li>
-            View Highscores
-        </li>
-        <li style="float:right; padding-right: 80px;">
-          Timer: 
-        </li>
+        <li id="highScoresNav" onclick="">View Highscores</li>
+        <li id="timerDisplay" style="float:right; padding-right: 80px;"></li>
+        <li style="float:right; padding-right: 40px;">Timer: </li>
     </ul>
 </nav>
 <div id="container">
@@ -35,7 +32,7 @@
         <div id="pAnswer"></div>
   </div>
   <div id="yourScore" style = "display : none;">
-    <p style="text-align:center;">TEST TEXT</p>
+    <p id="score" style="text-align:center;">Pull final result from timer</p>
   </div>
 </div>
     <script src="./assets/js/script.js"></script>

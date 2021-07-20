@@ -72,3 +72,8 @@ li {
 nav {
     padding-top: 20px;
 }
+
+#highScoresNav {
+    color:blueviolet;
+    /*text-decoration: underline;*/
+}
