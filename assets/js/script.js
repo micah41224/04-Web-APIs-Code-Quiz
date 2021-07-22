@@ -107,6 +107,11 @@ function checkAnswer(answer){
   if(currentQuestion < lastQuestion){
       currentQuestion++;
       makeQuestion();
+  if(currentQuestion >= 5){
+    quiz.style.display = "none";
+    showHighScores();
+  }
+  /*
   }else{
     showHighScores()
     /*yourScore.style.display = "block";
