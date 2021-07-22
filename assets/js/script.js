@@ -11,7 +11,8 @@ var previousAnswer = "";
 const pAnswer = document.getElementById("pAnswer");
 const container = document.getElementById("container");
 var yourScore = document.getElementById("yourScore");
-var timerStart = 70
+var timerStart = "";
+var sec = 70;
 
 //Array of questions and answers that can be referenced by the makeQuestion function to generate the quiz
 let questions = [
@@ -122,7 +123,7 @@ function answerIsCorrect(){
 function answerIsWrong(){
   console.log("wrong");
   previousAnswer = "<div class=\"pAnswer\">Incorrect!</div>";
-document.getElementById('timerDisplay').innerHTML='00:'+ (sec - 10);
+  sec = sec - 10;
  /* if (previousAnswer == "<div class=\"pAnswer\">Incorrect!</div>") {
       document.getElementById('timerDisplay').innerHTML='00:'+ (sec - 10);
       } */
@@ -134,7 +135,7 @@ function showHighScores(){
 }
 
 function timer(){
-  sec = 0 + timerStart;
+  //sec = 70
   var timer = setInterval(function(){
       document.getElementById('timerDisplay').innerHTML='00:'+sec;
       sec--;
