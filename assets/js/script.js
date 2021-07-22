@@ -10,7 +10,8 @@ const score = document.getElementById("score");
 var previousAnswer = "";
 const pAnswer = document.getElementById("pAnswer");
 const container = document.getElementById("container");
-var yourScore = document.getElementById("yourScore")
+var yourScore = document.getElementById("yourScore");
+var timerStart = 70
 
 //Array of questions and answers that can be referenced by the makeQuestion function to generate the quiz
 let questions = [
@@ -59,6 +60,9 @@ let questions = [
     choice4 : "4. console.log"
     
   },
+  {
+    question: " ",
+  },
 ]
 
 const lastQuestion = questions.length -1;
@@ -103,9 +107,10 @@ function checkAnswer(answer){
       currentQuestion++;
       makeQuestion();
   }else{
-    yourScore.style.display = "block";
-    quiz.style.display = "none";
-  }
+    showHighScores()
+    /*yourScore.style.display = "block";
+    quiz.style.display = "none"; */
+  } 
 }
 function answerIsCorrect(){
   //Might need to add HTML elements into this quotation (<p>correct</p>)
@@ -117,6 +122,10 @@ function answerIsCorrect(){
 function answerIsWrong(){
   console.log("wrong");
   previousAnswer = "<div class=\"pAnswer\">Incorrect!</div>";
+document.getElementById('timerDisplay').innerHTML='00:'+ (sec - 10);
+ /* if (previousAnswer == "<div class=\"pAnswer\">Incorrect!</div>") {
+      document.getElementById('timerDisplay').innerHTML='00:'+ (sec - 10);
+      } */
 }
 
 function showHighScores(){
@@ -125,16 +134,34 @@ function showHighScores(){
 }
 
 function timer(){
-  var sec = 70;
+  sec = 0 + timerStart;
   var timer = setInterval(function(){
       document.getElementById('timerDisplay').innerHTML='00:'+sec;
       sec--;
       if (sec < 0) {
           clearInterval(timer);
       }
-      /*if (previousAnswer == "<div class=\"pAnswer\">Incorrect!</div>") {
-      document.getElementById('timerDisplay').innerHTML='00:'+ (sec - 10000);
-      } */
+
+      /*
+      if (previousAnswer == "<div class=\"pAnswer\">Incorrect!</div>") {
+      clearInterval(timer);
+      document.getElementById('timerDisplay').innerHTML='00:'+ (sec - 10);
+      document.getElementById('timerDisplay').innerHTML='00:'+sec;
+      sec--;
+      }
+*/
+
+      if (currentQuestion == 5) {
+        clearInterval(timer);
+      }
+
+
+
+      /*
+      if (previousAnswer == "<div class=\"pAnswer\">Incorrect!</div>") {
+      document.getElementById('timerDisplay').innerHTML='00:'+ (sec - 10);
+      } 
+      */
   }, 1000);
 }
 
