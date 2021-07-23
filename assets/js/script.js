@@ -147,6 +147,8 @@ function timer(){
       sec--;
       if (sec < 0) {
           clearInterval(timer);
+          yourScore.style.display = "block";
+          quiz.style.display = "none";
       }
 
       /*
