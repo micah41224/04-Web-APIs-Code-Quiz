@@ -18,7 +18,9 @@ var scoreSpan = document.getElementById("user-score");
 var saveScoreButton = document.getElementById("save-score");
 var msgDiv = document.getElementById("msg")
 var initialInput = document.getElementById("initials")
-var scoreInput = document.getElementById("score")
+var scoreInput = sec
+
+fetchPreviousScores()
 
 function displayMessage(type, message) {
   msgDiv.textContent = message;
@@ -101,6 +103,7 @@ start.addEventListener("click", startQuiz);
 function startQuiz(){
   start.style.display = "none";
   container.style.display = "none";
+  scoreList.style.display = "none";
   makeQuestion();
   quiz.style.display = "block";
   timer();
@@ -110,7 +113,6 @@ function checkAnswer(answer){
   if( answer == questions[currentQuestion].answer){
       console.log(questions[currentQuestion].answer)
       console.log(answer)
-      //score++;
       answerIsCorrect();
   }else{
       answerIsWrong();
@@ -143,8 +145,10 @@ function answerIsWrong(){
 }
 
 function showPlayerScore(){
+  fetchPreviousScores();
   yourScore.style.display = "block";
   quiz.style.display = "none";
+  scoreList.style.display = "block";
   document.getElementById('score').innerHTML= 'Your score is: ' + sec + '!';
 
   
@@ -161,22 +165,26 @@ saveScoreButton.addEventListener("click", function(event) {
   } else {
     displayMessage("success", "Your score was saved!");
 
-    localStorage.setItem("initials", initials);
-    localStorage.setItem("score", score);
+    localStorage.setItem("initials", JSON.stringify(initials));
+    localStorage.setItem("score", JSON.stringify(sec));
     fetchPreviousScores();
   }
 });
 
 function fetchPreviousScores() {
-  var email = localStorage.getItem("initials");
-  var password = localStorage.getItem("score");
+  var initials = JSON.parse(localStorage.getItem("initials"));
+  console.log(initials);
+  var score = JSON.parse(localStorage.getItem("score"));
+  console.log(score);
 
-  if (!email || !password) {
+  /*
+  if (!getInitials || !getScore) {
     return;
   }
+*/
 
-  initialsSpan.textcontent = initials;
-  scoreSpan.textcontent = score;
+  initialsSpan.textContent = initials;
+  scoreSpan.textContent = score;
 }
 
 
@@ -214,6 +222,7 @@ function timer(){
 }
 
 function viewHighScores() {
+  fetchPreviousScores();
   start.style.display = "none";
   container.style.display = "none";
   yourScore.style.display = "none";
