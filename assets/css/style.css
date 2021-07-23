@@ -77,3 +77,11 @@ nav {
     color:blueviolet;
     /*text-decoration: underline;*/
 }
+
+#score {
+    font-weight: bolder;
+}
+
+#formInput {
+    text-align:center;
+}

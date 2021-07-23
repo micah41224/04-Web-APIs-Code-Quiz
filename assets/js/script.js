@@ -107,7 +107,7 @@ function checkAnswer(answer){
   if(currentQuestion < lastQuestion){
       currentQuestion++;
       makeQuestion();
-  if(currentQuestion >= 5){
+  if(currentQuestion >= questions.length -1){
     quiz.style.display = "none";
     showHighScores();
   }
@@ -137,6 +137,7 @@ function answerIsWrong(){
 function showHighScores(){
   yourScore.style.display = "block";
   quiz.style.display = "none";
+  document.getElementById('score').innerHTML= 'Your score is: ' + sec;
 }
 
 function timer(){
