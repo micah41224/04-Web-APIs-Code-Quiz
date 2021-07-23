@@ -13,6 +13,18 @@ const container = document.getElementById("container");
 var yourScore = document.getElementById("yourScore");
 var timerStart = "";
 var sec = 70;
+var initialsSpan = document.getElementById("user-initials");
+var scoreSpan = document.getElementById("user-score");
+var saveScoreButton = document.getElementById("save-score");
+var msgDiv = document.getElementById("msg")
+var initialInput = document.getElementById("initials")
+var scoreInput = document.getElementById("score")
+
+function displayMessage(type, message) {
+  msgDiv.textContent = message;
+  msgDiv.setAttribute("class", type);
+}
+
 
 //Array of questions and answers that can be referenced by the makeQuestion function to generate the quiz
 let questions = [
@@ -109,13 +121,9 @@ function checkAnswer(answer){
       makeQuestion();
   if(currentQuestion >= questions.length -1){
     quiz.style.display = "none";
-    showHighScores();
+    showPlayerScore();
   }
-  /*
-  }else{
-    showHighScores()
-    /*yourScore.style.display = "block";
-    quiz.style.display = "none"; */
+
   } 
 }
 function answerIsCorrect(){
@@ -134,11 +142,43 @@ function answerIsWrong(){
       } */
 }
 
-function showHighScores(){
+function showPlayerScore(){
   yourScore.style.display = "block";
   quiz.style.display = "none";
-  document.getElementById('score').innerHTML= 'Your score is: ' + sec;
+  document.getElementById('score').innerHTML= 'Your score is: ' + sec + '!';
+
+  
 }
+
+saveScoreButton.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var initials = document.querySelector("#initials").value;
+  var score = document.querySelector("#score").value;
+
+  if (initials === "") {
+    displayMessage("error", "Initials cannot be left blank");
+  } else {
+    displayMessage("success", "Your score was saved!");
+
+    localStorage.setItem("initials", initials);
+    localStorage.setItem("score", score);
+    fetchPreviousScores();
+  }
+});
+
+function fetchPreviousScores() {
+  var email = localStorage.getItem("initials");
+  var password = localStorage.getItem("score");
+
+  if (!email || !password) {
+    return;
+  }
+
+  initialsSpan.textcontent = initials;
+  scoreSpan.textcontent = score;
+}
+
 
 function timer(){
   //sec = 70
@@ -147,8 +187,7 @@ function timer(){
       sec--;
       if (sec < 0) {
           clearInterval(timer);
-          yourScore.style.display = "block";
-          quiz.style.display = "none";
+          showPlayerScore();
       }
 
       /*
@@ -174,36 +213,11 @@ function timer(){
   }, 1000);
 }
 
+function viewHighScores() {
+  start.style.display = "none";
+  container.style.display = "none";
+  yourScore.style.display = "none";
+  quiz.style.display = "none";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-setTimeout(
-    () => {
-        console.log('Hello after 4 seconds');
-    },
-    4 * 1000
-);
-*/
+scoreList.style.display = "block";
+}

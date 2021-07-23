@@ -78,10 +78,19 @@ nav {
     /*text-decoration: underline;*/
 }
 
+#yourScore {
+    margin-top: 5%;
+}
+
 #score {
     font-weight: bolder;
 }
 
 #formInput {
     text-align:center;
+}
+
+#scoreList {
+    width: fit-content;
+    margin: auto;
 }
