@@ -11,7 +11,7 @@ var previousAnswer = "";
 const pAnswer = document.getElementById("pAnswer");
 const container = document.getElementById("container");
 var yourScore = document.getElementById("yourScore");
-var timerStart = "";
+var timerStart = 00;
 var sec = 70;
 var initialsSpan = document.getElementById("user-initials");
 var scoreSpan = document.getElementById("user-score");
@@ -19,6 +19,7 @@ var saveScoreButton = document.getElementById("save-score");
 var msgDiv = document.getElementById("msg")
 var initialInput = document.getElementById("initials")
 var scoreInput = sec
+var quizRestart = document.getElementById("restartQuiz");
 
 fetchPreviousScores()
 
@@ -148,7 +149,7 @@ function showPlayerScore(){
   fetchPreviousScores();
   yourScore.style.display = "block";
   quiz.style.display = "none";
-  scoreList.style.display = "block";
+  scoreList.style.display = "none";
   document.getElementById('score').innerHTML= 'Your score is: ' + sec + '!';
 
   
@@ -168,6 +169,7 @@ saveScoreButton.addEventListener("click", function(event) {
     localStorage.setItem("initials", JSON.stringify(initials));
     localStorage.setItem("score", JSON.stringify(sec));
     fetchPreviousScores();
+    viewHighScores();
   }
 });
 
@@ -191,7 +193,7 @@ function fetchPreviousScores() {
 function timer(){
   //sec = 70
   var timer = setInterval(function(){
-      document.getElementById('timerDisplay').innerHTML='00:'+sec;
+      document.getElementById('timerDisplay').innerHTML= sec;
       sec--;
       if (sec < 0) {
           clearInterval(timer);
@@ -211,7 +213,7 @@ function timer(){
         clearInterval(timer);
       }
 
-
+      
 
       /*
       if (previousAnswer == "<div class=\"pAnswer\">Incorrect!</div>") {
@@ -227,6 +229,18 @@ function viewHighScores() {
   container.style.display = "none";
   yourScore.style.display = "none";
   quiz.style.display = "none";
+  scoreList.style.display = "block";
+}
 
-scoreList.style.display = "block";
+quizRestart.addEventListener("click", restartQuiz);
+
+function restartQuiz(){
+  container.style.display = "block";
+  scoreList.style.display = "none";
+  quiz.style.display = "none";
+  start.style.display = "block";
+  yourScore.style.display = "none";
+  pAnswer.style.display = "none";
+  sec = 70;
+  currentQuestion = 0;
 }
