@@ -105,6 +105,7 @@ function startQuiz(){
   start.style.display = "none";
   container.style.display = "none";
   scoreList.style.display = "none";
+  highScoresNav.style.display = "none";
   makeQuestion();
   quiz.style.display = "block";
   timer();
@@ -150,6 +151,7 @@ function showPlayerScore(){
   yourScore.style.display = "block";
   quiz.style.display = "none";
   scoreList.style.display = "none";
+  highScoresNav.style.display = "inline";
   document.getElementById('score').innerHTML= 'Your score is: ' + sec + '!';
 
   
@@ -226,6 +228,7 @@ function timer(){
 function viewHighScores() {
   fetchPreviousScores();
   start.style.display = "none";
+  highScoresNav.style.display = "inline";
   container.style.display = "none";
   yourScore.style.display = "none";
   quiz.style.display = "none";
@@ -241,6 +244,7 @@ function restartQuiz(){
   start.style.display = "block";
   yourScore.style.display = "none";
   pAnswer.style.display = "none";
+  highScoresNav.style.display = "inline";
   sec = 70;
   currentQuestion = 0;
 }
