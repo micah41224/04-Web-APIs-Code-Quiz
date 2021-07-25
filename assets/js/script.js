@@ -20,8 +20,9 @@ var msgDiv = document.getElementById("msg")
 var initialInput = document.getElementById("initials")
 var scoreInput = sec
 var quizRestart = document.getElementById("restartQuiz");
+var toclearLS = document.getElementById("clearLS");
+var resetHsList = document.getElementById("highscores")
 
-fetchPreviousScores()
 
 function displayMessage(type, message) {
   msgDiv.textContent = message;
@@ -106,6 +107,7 @@ function startQuiz(){
   container.style.display = "none";
   scoreList.style.display = "none";
   highScoresNav.style.display = "none";
+  pAnswer.style.display = "block";
   makeQuestion();
   quiz.style.display = "block";
   timer();
@@ -141,13 +143,10 @@ function answerIsWrong(){
   console.log("wrong");
   previousAnswer = "<div class=\"pAnswer\">Incorrect!</div>";
   sec = sec - 10;
- /* if (previousAnswer == "<div class=\"pAnswer\">Incorrect!</div>") {
-      document.getElementById('timerDisplay').innerHTML='00:'+ (sec - 10);
-      } */
+
 }
 
 function showPlayerScore(){
-  fetchPreviousScores();
   yourScore.style.display = "block";
   quiz.style.display = "none";
   scoreList.style.display = "none";
@@ -157,6 +156,55 @@ function showPlayerScore(){
   
 }
 
+
+saveScoreButton.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var initials = document.querySelector("#initials").value;
+  var score = document.querySelector("#score").value;
+
+  if (initials === "") {
+    displayMessage("error", "Initials cannot be left blank");
+  } else {
+    displayMessage("success", "Your score was saved!");
+    var hsLog = JSON.parse(window.localStorage.getItem("hsLog")) || [];
+    var newEntry = {
+      score: sec,
+      initials: initials
+    };
+  }
+
+    hsLog.push(newEntry);
+    window.localStorage.setItem("hsLog", JSON.stringify(hsLog));
+    console.log(hsLog);
+
+    location.reload();
+  
+  });
+
+
+  
+  function retrieveHsLog(){
+
+    var hsLog = JSON.parse(window.localStorage.getItem("hsLog")) || [];
+
+    hsLog.sort(function(a, b) {
+      return b.score - a.score
+    });
+    
+    
+    hsLog.forEach(function(score) {
+      var liTag = document.createElement("li");
+      liTag.textContent = score.initials + " - " + score.score;
+  
+      var olEl = document.getElementById("highscores");
+      olEl.appendChild(liTag);
+    });
+  }
+
+//retrieveHsLog();
+
+/*
 saveScoreButton.addEventListener("click", function(event) {
   event.preventDefault();
 
@@ -181,16 +229,20 @@ function fetchPreviousScores() {
   var score = JSON.parse(localStorage.getItem("score"));
   console.log(score);
 
+*/
+
   /*
   if (!getInitials || !getScore) {
     return;
   }
 */
 
+/*
   initialsSpan.textContent = initials;
   scoreSpan.textContent = score;
 }
 
+*/
 
 function timer(){
   //sec = 70
@@ -202,31 +254,18 @@ function timer(){
           showPlayerScore();
       }
 
-      /*
-      if (previousAnswer == "<div class=\"pAnswer\">Incorrect!</div>") {
-      clearInterval(timer);
-      document.getElementById('timerDisplay').innerHTML='00:'+ (sec - 10);
-      document.getElementById('timerDisplay').innerHTML='00:'+sec;
-      sec--;
-      }
-*/
-
       if (currentQuestion == 5) {
         clearInterval(timer);
       }
 
-      
-
-      /*
-      if (previousAnswer == "<div class=\"pAnswer\">Incorrect!</div>") {
-      document.getElementById('timerDisplay').innerHTML='00:'+ (sec - 10);
-      } 
-      */
   }, 1000);
 }
 
 function viewHighScores() {
-  fetchPreviousScores();
+  //fetchPreviousScores();
+  
+  document.getElementById("highscores").value = "";
+  retrieveHsLog();
   start.style.display = "none";
   highScoresNav.style.display = "inline";
   container.style.display = "none";
@@ -247,4 +286,12 @@ function restartQuiz(){
   highScoresNav.style.display = "inline";
   sec = 70;
   currentQuestion = 0;
+  
+}
+
+toclearLS.addEventListener("click", clearLS)
+
+function clearLS(){
+  localStorage.clear();
+  location.reload();
 }

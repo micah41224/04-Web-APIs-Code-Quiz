@@ -16,10 +16,28 @@ ul {
     display: inline;
 }
 
-li {
+#highScoresNav {
     display: inline;
     text-align: right;
     font-size: 20px;
+}
+
+
+li {
+    font-size: 20px;
+}
+
+
+.buttonbox {
+    margin: 0 auto;
+    display: inline;
+    text-align: center;
+}
+
+#highscores {
+    display: block;
+    float: left;
+    padding: 5px;
 }
 
 .start_btn {
@@ -28,6 +46,7 @@ li {
     text-align: center;
     width: 150px;
     height: 50px;
+    display: inline;
 
 }
 
