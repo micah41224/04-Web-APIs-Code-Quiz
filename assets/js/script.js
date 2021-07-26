@@ -1,4 +1,4 @@
-// A list of the variables (mostly constants) to be referenced throughout the quiz code
+// A list of the variables (mostly constants) to be referenced throughout the quiz javascript code.
 const start = document.getElementById("start");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
@@ -23,14 +23,14 @@ var quizRestart = document.getElementById("restartQuiz");
 var toclearLS = document.getElementById("clearLS");
 var resetHsList = document.getElementById("highscores")
 
-
+// Enables message to display while entering your intials to store score (if initials field blank alerts you, if score successfully saved also alerts).
 function displayMessage(type, message) {
   msgDiv.textContent = message;
   msgDiv.setAttribute("class", type);
 }
 
 
-//Array of questions and answers that can be referenced by the makeQuestion function to generate the quiz
+// Array of questions and answers that can be referenced by the makeQuestion function to generate the quiz.
 let questions = [
     {
     question: "Commonly used data types DO NOT include:",
@@ -82,11 +82,12 @@ let questions = [
   },
 ]
 
+
 const lastQuestion = questions.length -1;
 let currentQuestion = 0;
 
 
-
+// Function to create the quiz questions and display whether or not the last answer was correct.
 function makeQuestion(){
 
     let q = questions[currentQuestion];
@@ -100,6 +101,7 @@ function makeQuestion(){
     pAnswer.innerHTML = previousAnswer;
 }
 
+// Code behind the start quiz button that actually starts the quiz and hides the opening card, also starts the timer function.
 start.addEventListener("click", startQuiz);
 
 function startQuiz(){
@@ -113,6 +115,8 @@ function startQuiz(){
   timer();
 }
 
+// Function that checks whether or not the answer you clicked was correct. Also checks to see if you just completed the last question.
+// If you have completed the last question the function will push the user to the player score screen and hide the quiz.
 function checkAnswer(answer){
   if( answer == questions[currentQuestion].answer){
       console.log(questions[currentQuestion].answer)
@@ -132,20 +136,21 @@ function checkAnswer(answer){
 
   } 
 }
-function answerIsCorrect(){
-  //Might need to add HTML elements into this quotation (<p>correct</p>)
-  previousAnswer =  "<div class=\"pAnswer\">Correct!</div>";
 
-  console.log("correct");
+// If the user answered the previous question correctly this function will display "Correct!" under the next question.
+function answerIsCorrect(){
+  previousAnswer =  "<div class=\"pAnswer\">Correct!</div>";
 }
 
+// If the user answered the previous question incorrectly this function will display "Incorrect!" under the next question and deduct 10 seconds from the timer.
 function answerIsWrong(){
-  console.log("wrong");
   previousAnswer = "<div class=\"pAnswer\">Incorrect!</div>";
   sec = sec - 10;
 
 }
 
+// This function hides the quiz card and shows the user their final score (based on time taken to complete the quiz minus 10 sec for each incorrect answer).
+// The user can also enter their initials and save their score to local storage.
 function showPlayerScore(){
   yourScore.style.display = "block";
   quiz.style.display = "none";
@@ -156,7 +161,8 @@ function showPlayerScore(){
   
 }
 
-
+// This is the function that actually saves the player's initials/score to local storage.
+// Contains code that will notify the user if their score was saved or if they left the initials field blank.
 saveScoreButton.addEventListener("click", function(event) {
   event.preventDefault();
 
@@ -178,12 +184,13 @@ saveScoreButton.addEventListener("click", function(event) {
     window.localStorage.setItem("hsLog", JSON.stringify(hsLog));
     console.log(hsLog);
 
+    // Added this page reload command to force the page to clear previous high score entries.
     location.reload();
   
   });
-
-
   
+  // This function pulls previous high scores from the local storage and creates list items to display them in.
+  // It also orders them from highest to lowest score.
   function retrieveHsLog(){
 
     var hsLog = JSON.parse(window.localStorage.getItem("hsLog")) || [];
@@ -202,50 +209,10 @@ saveScoreButton.addEventListener("click", function(event) {
     });
   }
 
-//retrieveHsLog();
-
-/*
-saveScoreButton.addEventListener("click", function(event) {
-  event.preventDefault();
-
-  var initials = document.querySelector("#initials").value;
-  var score = document.querySelector("#score").value;
-
-  if (initials === "") {
-    displayMessage("error", "Initials cannot be left blank");
-  } else {
-    displayMessage("success", "Your score was saved!");
-
-    localStorage.setItem("initials", JSON.stringify(initials));
-    localStorage.setItem("score", JSON.stringify(sec));
-    fetchPreviousScores();
-    viewHighScores();
-  }
-});
-
-function fetchPreviousScores() {
-  var initials = JSON.parse(localStorage.getItem("initials"));
-  console.log(initials);
-  var score = JSON.parse(localStorage.getItem("score"));
-  console.log(score);
-
-*/
-
-  /*
-  if (!getInitials || !getScore) {
-    return;
-  }
-*/
-
-/*
-  initialsSpan.textContent = initials;
-  scoreSpan.textContent = score;
-}
-
-*/
-
+  // This function sets up the quiz timer by setting its interval (by the second).
+  // It also causes the timer to stop and the quiz to end/kick the user to the score page once the timer hits 0 seconds remaining.
+  // Lastly this function tops the timer once the user completes question 5.
 function timer(){
-  //sec = 70
   var timer = setInterval(function(){
       document.getElementById('timerDisplay').innerHTML= sec;
       sec--;
@@ -261,10 +228,8 @@ function timer(){
   }, 1000);
 }
 
+// This function causes the high score screen to display.
 function viewHighScores() {
-  //fetchPreviousScores();
-  
-  document.getElementById("highscores").value = "";
   retrieveHsLog();
   start.style.display = "none";
   highScoresNav.style.display = "inline";
@@ -274,6 +239,8 @@ function viewHighScores() {
   scoreList.style.display = "block";
 }
 
+// Javascript to cause the quiz to restart when the quizRestart button is clicked.
+// Resets the quiz timer to 70 seconds and reverts the quiz to question 0 (the first question)
 quizRestart.addEventListener("click", restartQuiz);
 
 function restartQuiz(){
@@ -289,6 +256,7 @@ function restartQuiz(){
   
 }
 
+// Supports the "clear local storage" button and reloads the page so all previous high scores printed to the High Score page are cleared.
 toclearLS.addEventListener("click", clearLS)
 
 function clearLS(){

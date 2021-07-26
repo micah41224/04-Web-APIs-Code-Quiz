@@ -1,7 +1,6 @@
 h1 {
     font-size: 40px;
     margin: auto;
-    /*width: 50%;*/
     padding: 10px;
     text-align: center;
     margin-top: 90px;
@@ -64,7 +63,6 @@ li {
     width: fit-content;
     padding: 5px;
     border:black 1px solid;
-    /*max-width: 80px;*/
 }
 
 #container {
@@ -94,7 +92,6 @@ nav {
 
 #highScoresNav {
     color:blueviolet;
-    /*text-decoration: underline;*/
 }
 
 #yourScore {
