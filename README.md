@@ -17,3 +17,4 @@ https://micah41224.github.io/04-Web-APIs-Code-Quiz/
 ![Completed Application Start Page](/assets/screenshots/micah41224.github.io_04-Web-APIs-Code-Quiz_start_page.png)
 ![Completed Application Question Page](/assets/screenshots/micah41224.github.io_04-Web-APIs-Code-Quiz_question_page.png)
 ![Completed Application Score Page](/assets/screenshots/micah41224.github.io_04-Web-APIs-Code-Quiz_score_page.png)
+![Completed Application High Scores Page](/assets/screenshots/micah41224.github.io_04-Web-APIs-Code-Quiz_highscores_page.png)
